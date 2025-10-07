@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!--%msg是一个整体-->
+            <pattern>%d{HH:mm:ss} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!--是为 com.shane 包单独设置的日志级别。-->
+    <!--如果没有 <logger>，com.shane 会继承 <root> 的设置；有了 <logger>，就按它自己的级别输出。-->
+    <logger name="com.shane" level="info" />
+    <!--<root> 是根日志器，控制所有未被单独指定 logger 的包和类的日志输出。-->
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>
