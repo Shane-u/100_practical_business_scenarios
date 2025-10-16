@@ -1,0 +1,12 @@
+resilience4j:
+  circuitbreaker:
+    instances:
+      backendA:
+        sliding-window-size: 3 # 只看最近3次调用
+        minimum-number-of-calls: 1 # 只需要一次调用就开始评估
+        failure-rate-threshold: 50 # 失败率超过50%就开启断路器
+        wait-duration-in-open-state: 5000 # 开启后5s进入半开状态
+        permitted-number-of-calls-in-half-open-state: 2 # 半开状态允许2次调用测试断路器
+        automatic-transition-from-open-to-half-open-enabled: true # 自动从全开到半开
+        record-failure-predicate: # 只有以下异常会被算作“熔断失败”
+          - java.net.SocketTimeoutException
